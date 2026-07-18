@@ -7,7 +7,6 @@ purely within the fiction of the pocket-watch multiverse.
 """
 
 from dataclasses import dataclass, field
-from typing import List
 
 
 @dataclass
@@ -18,7 +17,7 @@ class Faction:
     motto: str
     domain: str
     allegiance: str  # 'order', 'chaos', or 'neutral'
-    known_dimensions: List[str] = field(default_factory=list)
+    known_dimensions: list[str] = field(default_factory=list)
     description: str = ""
 
     def __str__(self) -> str:
@@ -36,7 +35,7 @@ class Faction:
 # The eight known factions
 # ---------------------------------------------------------------------------
 
-FACTIONS: List[Faction] = [
+FACTIONS: list[Faction] = [
     Faction(
         pseudonym="The Clockmakers",
         motto="Every second is sovereign.",

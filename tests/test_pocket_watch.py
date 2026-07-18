@@ -16,6 +16,8 @@ from pocket_watch.dimensions import (
 from pocket_watch.keeper import Keeper
 from pocket_watch.story import origin_story
 
+EXPECTED_FACTION_COUNT = 8
+
 
 # ---------------------------------------------------------------------------
 # Faction tests
@@ -23,7 +25,7 @@ from pocket_watch.story import origin_story
 
 class TestFactions:
     def test_eight_factions_defined(self):
-        assert len(FACTIONS) == 8
+        assert len(FACTIONS) == EXPECTED_FACTION_COUNT
 
     def test_all_factions_have_pseudonym(self):
         for faction in FACTIONS:
@@ -278,7 +280,7 @@ class TestKeeper:
 
     def test_keeper_has_eight_factions(self):
         keeper = Keeper()
-        assert len(keeper.factions) == 8
+        assert len(keeper.factions) == EXPECTED_FACTION_COUNT
 
     def test_keeper_register_and_transit(self):
         keeper = Keeper()

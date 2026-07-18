@@ -16,7 +16,6 @@ import uuid
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from enum import Enum, auto
-from typing import Dict, List, Optional
 
 
 class DimensionStatus(Enum):
@@ -52,7 +51,7 @@ class Dimension:
     dimension_id: str
     name: str
     description: str
-    controlling_faction: Optional[str] = None  # faction pseudonym
+    controlling_faction: str | None = None  # faction pseudonym
     status: DimensionStatus = DimensionStatus.STABLE
     access_tier: AccessTier = AccessTier.OPEN
     fixed_point: bool = False  # True if a Predestination Fixed Point is present
@@ -87,7 +86,7 @@ class TravelRecord:
     departure_time: datetime = field(
         default_factory=lambda: datetime.now(tz=timezone.utc)
     )
-    arrival_time: Optional[datetime] = None
+    arrival_time: datetime | None = None
     approved_by_keeper: bool = False
     paradox_flagged: bool = False
     notes: str = ""
@@ -127,9 +126,9 @@ class DimensionRegistry:
     """
 
     def __init__(self) -> None:
-        self._dimensions: Dict[str, Dimension] = {}
-        self._travel_log: List[TravelRecord] = []
-        self._registered_travellers: Dict[str, dict] = {}
+        self._dimensions: dict[str, Dimension] = {}
+        self._travel_log: list[TravelRecord] = []
+        self._registered_travellers: dict[str, dict] = {}
 
     # ------------------------------------------------------------------
     # Dimension management
@@ -154,9 +153,9 @@ class DimensionRegistry:
 
     def list_dimensions(
         self,
-        status_filter: Optional[DimensionStatus] = None,
-        faction_filter: Optional[str] = None,
-    ) -> List[Dimension]:
+        status_filter: DimensionStatus | None = None,
+        faction_filter: str | None = None,
+    ) -> list[Dimension]:
         """Return dimensions, optionally filtered by status or faction."""
         results = list(self._dimensions.values())
         if status_filter is not None:
@@ -293,7 +292,7 @@ class DimensionRegistry:
     # Queries
     # ------------------------------------------------------------------
 
-    def travel_history(self, traveller_id: str) -> List[TravelRecord]:
+    def travel_history(self, traveller_id: str) -> list[TravelRecord]:
         """Return all travel records for a given traveller."""
         return [r for r in self._travel_log if r.traveller_id == traveller_id]
 

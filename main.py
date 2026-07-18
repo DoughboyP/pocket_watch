@@ -98,8 +98,8 @@ def menu_transit(keeper: Keeper) -> None:
     _divider()
     print("  REQUEST TRANSIT\n")
     traveller_id = input("  Traveller token : ").strip()
-    origin_id     = input("  Origin dim ID   : ").strip()
-    dest_id       = input("  Destination ID  : ").strip()
+    origin_id = input("  Origin dim ID   : ").strip()
+    dest_id = input("  Destination ID  : ").strip()
 
     # Check if approval is needed
     try:
