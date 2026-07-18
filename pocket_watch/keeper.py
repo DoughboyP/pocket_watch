@@ -174,6 +174,23 @@ _DEFAULT_DIMENSIONS: list[Dimension] = [
     ),
 ]
 
+_DEFAULT_DIMENSIONS.extend(
+    [
+        Dimension(
+            dimension_id=f"DIM-{index:03d}",
+            name=f"Frontier {index:03d}",
+            description=(
+                "A newly catalogued frontier dimension awaiting detailed "
+                "Keeper survey."
+            ),
+            controlling_faction=None,
+            status=DimensionStatus.STABLE,
+            access_tier=AccessTier.OPEN,
+        )
+        for index in range(12, 112)
+    ]
+)
+
 
 class Keeper:
     """
